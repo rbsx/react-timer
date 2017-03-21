@@ -4,8 +4,7 @@ var CountdownForm = React.createClass({
   onSubmit: function(e) {
     e.preventDefault();
     let totalSeconds = this.refs.seconds.value;
-
-    if (totalSeconds.match(/^[0-9]*$/)) {
+    if ((totalSeconds.match(/^[0-9]*$/)) && !!totalSeconds) {
       this.refs.seconds.value = '';
       this.props.onSetCountdown(parseInt(totalSeconds, 10));
     }
@@ -13,9 +12,9 @@ var CountdownForm = React.createClass({
   render: function() {
     return (
       <div>
-        <form onSubmit={this.onSumbit} ref="form" className="countdown-form">
+        <form ref="form" onSubmit={this.onSubmit} className="countdown-form">
           <input type="text" ref="seconds" placeholder="Enter time in seconds"/>
-          <button className="button hollow expanded">Start</button>
+          <button className="button expanded">Start</button>
         </form>
       </div>
     );
